@@ -67,7 +67,11 @@ function makeBookCover(title, subtitle) {
   return `
 <section class="book-cover" id="cover" data-reader-section data-reader-title="${escapeAttr(title)}">
   <div class="book-cover__art">
-    <img src="./assets/images/book-cover.webp" alt="${escapeAttr(title)} 표지" />
+    <picture>
+      <source media="(max-width: 820px)" srcset="./assets/images/book-cover-mobile.webp" />
+      <source media="(max-width: 1180px)" srcset="./assets/images/book-cover-tablet.webp" />
+      <img src="./assets/images/book-cover.webp" alt="${escapeAttr(title)} 표지" />
+    </picture>
   </div>
   <div class="book-cover__content">
     <p class="book-cover__eyebrow">ALGORITHM WEB BOOK</p>
@@ -562,7 +566,11 @@ function parseMarkdown(md) {
   output.push(`
 <section class="back-cover" id="back-cover" data-reader-section data-reader-title="끝 표지">
   <div class="back-cover__art">
-    <img src="./assets/images/back-cover.webp" alt="웹북 끝 표지" />
+    <picture>
+      <source media="(max-width: 820px)" srcset="./assets/images/back-cover-mobile.webp" />
+      <source media="(max-width: 1180px)" srcset="./assets/images/back-cover-tablet.webp" />
+      <img src="./assets/images/back-cover.webp" alt="웹북 끝 표지" />
+    </picture>
   </div>
   <div class="back-cover__content">
     <h2>끝까지 읽어주셔서 감사합니다.</h2>

@@ -31,6 +31,10 @@ For best visual output, enable "Background graphics" so cover, chapter cover, an
 The current image slots are placeholders. Replace these files when artwork is ready:
 
 - `assets/images/book-cover.webp`
+- `assets/images/book-cover-tablet.webp`
+- `assets/images/book-cover-mobile.webp`
 - `assets/images/back-cover.webp`
+- `assets/images/back-cover-tablet.webp`
+- `assets/images/back-cover-mobile.webp`
 - `assets/images/chapter3-path.webp`
 - `assets/images/chapter3-grid.webp`
