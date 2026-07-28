@@ -1024,6 +1024,56 @@ figcaption {
   cursor: pointer;
 }
 
+.resume-reading {
+  --resume-accent: var(--chapter-accent);
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 45;
+  width: min(360px, calc(100vw - 44px));
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--resume-accent) 22%, var(--line));
+  border-radius: 8px;
+  background: rgba(255, 253, 250, .96);
+  box-shadow: 0 18px 48px rgba(38, 38, 38, .14);
+}
+
+.resume-reading p {
+  margin: 0 0 12px;
+  color: #262626;
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 760;
+}
+
+.resume-reading__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.resume-reading button {
+  min-width: 0;
+  height: 38px;
+  padding: 0 13px;
+  border-radius: 7px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.resume-reading__primary {
+  border: 1px solid var(--resume-accent);
+  background: var(--resume-accent);
+  color: #fffdfa;
+}
+
+.resume-reading__secondary {
+  border: 1px solid var(--line);
+  background: #fffdfa;
+  color: #57534e;
+}
+
 @media (max-width: 820px) {
   html,
   body {
@@ -1158,6 +1208,19 @@ figcaption {
     width: min(94vw, 430px);
   }
 
+  .resume-reading {
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(12px, env(safe-area-inset-bottom));
+    left: max(12px, env(safe-area-inset-left));
+    width: auto;
+    max-width: calc(100vw - 24px);
+    padding: 14px;
+  }
+
+  .resume-reading__actions {
+    justify-content: flex-end;
+  }
+
   .chapter-cover {
     min-height: 76vh;
   }
@@ -1219,7 +1282,8 @@ figcaption {
   .reader-header,
   .toc-drawer,
   .toc-backdrop,
-  .image-modal {
+  .image-modal,
+  .resume-reading {
     display: none !important;
   }
 

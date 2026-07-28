@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 const SOURCE_PATH = path.join("docs", "webbook.md");
 const TEMPLATE_PATH = path.join("templates", "index-template.html");
@@ -70,7 +71,7 @@ function makeBookCover(title, subtitle) {
     <picture>
       <source media="(max-width: 820px)" srcset="./assets/images/book-cover-mobile.webp" />
       <source media="(max-width: 1180px)" srcset="./assets/images/book-cover-tablet.webp" />
-      <img src="./assets/images/book-cover.webp" alt="${escapeAttr(title)} 표지" />
+      <img src="./assets/images/book-cover.webp" alt="" aria-hidden="true" />
     </picture>
   </div>
   <div class="book-cover__content">
@@ -569,7 +570,7 @@ function parseMarkdown(md) {
     <picture>
       <source media="(max-width: 820px)" srcset="./assets/images/back-cover-mobile.webp" />
       <source media="(max-width: 1180px)" srcset="./assets/images/back-cover-tablet.webp" />
-      <img src="./assets/images/back-cover.webp" alt="웹북 끝 표지" />
+      <img src="./assets/images/back-cover.webp" alt="" aria-hidden="true" />
     </picture>
   </div>
   <div class="back-cover__content">
@@ -713,13 +714,15 @@ function validateSourceMarkdown(markdown) {
 
 function build() {
   const markdown = fs.readFileSync(SOURCE_PATH, "utf8");
+  const contentVersion = crypto.createHash("sha256").update(markdown).digest("hex").slice(0, 12);
   validateSourceMarkdown(markdown);
   const template = fs.readFileSync(TEMPLATE_PATH, "utf8");
   const { title, content, drawerItems } = parseMarkdown(markdown);
   const html = template
-    .replaceAll("{{TITLE}}", escapeHtml(title))
-    .replace("{{DRAWER_TOC}}", renderDrawerToc(drawerItems))
-    .replace("{{CONTENT}}", content);
+      .replaceAll("{{TITLE}}", escapeHtml(title))
+      .replace("{{CONTENT_VERSION}}", contentVersion)
+      .replace("{{DRAWER_TOC}}", renderDrawerToc(drawerItems))
+      .replace("{{CONTENT}}", content);
 
   validateGeneratedHtml(html);
   fs.writeFileSync(OUTPUT_PATH, html, "utf8");
