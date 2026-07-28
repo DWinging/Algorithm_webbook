@@ -9,8 +9,10 @@
   const modal = document.querySelector("[data-image-modal]");
   const modalImage = document.querySelector("[data-modal-image]");
   const modalCaption = document.querySelector("[data-modal-caption]");
+  const coarsePointer = window.matchMedia("(max-width: 820px), (pointer: coarse)");
 
   const openDrawer = () => {
+    document.body.classList.add("reader-ui-visible");
     drawer.classList.add("is-open");
     backdrop.classList.add("is-open");
     drawer.setAttribute("aria-hidden", "false");
@@ -22,6 +24,17 @@
     backdrop.classList.remove("is-open");
     drawer.setAttribute("aria-hidden", "true");
     openButton.setAttribute("aria-expanded", "false");
+  };
+
+  const toggleReaderUi = () => {
+    if (!coarsePointer.matches) return;
+    document.body.classList.toggle("reader-ui-visible");
+  };
+
+  const shouldIgnoreReaderTap = (target) => {
+    return Boolean(target.closest(
+      "a, button, input, textarea, select, .toc-drawer, .toc-backdrop, .image-modal, .figure, .reader-header"
+    ));
   };
 
   openButton.addEventListener("click", openDrawer);
@@ -95,6 +108,11 @@
       closeDrawer();
       closeModal();
     }
+  });
+
+  document.querySelector(".reader").addEventListener("click", (event) => {
+    if (shouldIgnoreReaderTap(event.target)) return;
+    toggleReaderUi();
   });
 
   updateReaderState();
