@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>{{TITLE}}</title>
+  <link rel="stylesheet" href="./assets/css/webbook.css" />
+</head>
+<body>
+  <header class="reader-header" data-reader-header>
+    <button class="toc-button" type="button" aria-label="목차 열기" aria-controls="toc-drawer" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+    <div class="reader-title" data-current-title>{{TITLE}}</div>
+    <div class="reader-progress" aria-label="읽은 진행률"><span data-progress-text>0%</span></div>
+  </header>
+
+  <aside class="toc-drawer" id="toc-drawer" aria-hidden="true">
+    <div class="toc-drawer__header">
+      <strong>목차</strong>
+      <button class="toc-drawer__close" type="button" aria-label="목차 닫기">닫기</button>
+    </div>
+    <nav class="toc-list" aria-label="웹북 목차">
+      {{DRAWER_TOC}}
+    </nav>
+  </aside>
+
+  <div class="toc-backdrop" data-toc-backdrop></div>
+
+  <main class="reader">
+    <div class="reader-content">
+      {{CONTENT}}
+    </div>
+  </main>
+
+  <div class="image-modal" data-image-modal aria-hidden="true" role="dialog" aria-modal="true" aria-label="이미지 확대 보기">
+    <button class="image-modal__close" type="button" aria-label="이미지 닫기">닫기</button>
+    <img data-modal-image alt="" />
+    <p data-modal-caption></p>
+  </div>
+
+  <script src="./assets/js/reader.js" defer></script>
+</body>
+</html>
