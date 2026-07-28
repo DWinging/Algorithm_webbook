@@ -1036,11 +1036,34 @@ figcaption {
     max-width: 100%;
   }
 
+  .book-cover,
+  .back-cover {
+    width: 100vw;
+    max-width: none;
+    margin-right: calc(50% - 50vw);
+    margin-left: calc(50% - 50vw);
+  }
+
+  @supports (width: 100svw) {
+    .book-cover,
+    .back-cover {
+      width: 100svw;
+      margin-right: calc(50% - 50svw);
+      margin-left: calc(50% - 50svw);
+    }
+  }
+
   .book-cover {
     min-height: 100vh;
     height: 100vh;
     max-height: 100vh;
     overflow: hidden;
+  }
+
+  .book-cover__content,
+  .back-cover__content {
+    padding-right: max(20px, env(safe-area-inset-right));
+    padding-left: max(20px, env(safe-area-inset-left));
   }
 
   @supports (height: 100svh) {
