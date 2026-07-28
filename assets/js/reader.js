@@ -11,8 +11,19 @@
   const modalCaption = document.querySelector("[data-modal-caption]");
   const coarsePointer = window.matchMedia("(max-width: 820px), (pointer: coarse)");
 
+  const setReaderUi = (visible) => {
+    if (!coarsePointer.matches) {
+      document.body.classList.remove("reader-ui-visible");
+      return;
+    }
+    if (visible) {
+      document.documentElement.style.setProperty("--reader-header-top", `${window.scrollY}px`);
+    }
+    document.body.classList.toggle("reader-ui-visible", visible);
+  };
+
   const openDrawer = () => {
-    document.body.classList.add("reader-ui-visible");
+    setReaderUi(true);
     drawer.classList.add("is-open");
     backdrop.classList.add("is-open");
     drawer.setAttribute("aria-hidden", "false");
@@ -24,11 +35,12 @@
     backdrop.classList.remove("is-open");
     drawer.setAttribute("aria-hidden", "true");
     openButton.setAttribute("aria-expanded", "false");
+    setReaderUi(false);
   };
 
   const toggleReaderUi = () => {
     if (!coarsePointer.matches) return;
-    document.body.classList.toggle("reader-ui-visible");
+    setReaderUi(!document.body.classList.contains("reader-ui-visible"));
   };
 
   const shouldIgnoreReaderTap = (target) => {
@@ -116,6 +128,13 @@
   });
 
   updateReaderState();
-  window.addEventListener("scroll", updateReaderState, { passive: true });
+  setReaderUi(false);
+  window.addEventListener("scroll", () => {
+    updateReaderState();
+    if (!drawer.classList.contains("is-open")) {
+      setReaderUi(false);
+    }
+  }, { passive: true });
   window.addEventListener("resize", updateReaderState);
+  coarsePointer.addEventListener?.("change", () => setReaderUi(false));
 })();

@@ -1032,14 +1032,19 @@ figcaption {
   }
 
   .reader-header {
+    position: absolute;
+    top: var(--reader-header-top, 0);
     transform: translateY(-105%);
+    opacity: 0;
+    visibility: hidden;
     pointer-events: none;
   }
 
   body.reader-ui-visible .reader-header,
-  .reader-header:focus-within,
-  .toc-drawer.is-open ~ .reader-header {
+  .reader-header:focus-within {
     transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
     pointer-events: auto;
   }
 
