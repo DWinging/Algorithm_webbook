@@ -1,6 +1,26 @@
 (() => {
   const STORAGE_KEY = "algorithm-webbook-reading-position";
   const SAVE_DEBOUNCE_MS = 300;
+  const READ_ANCHOR_SELECTOR = [
+    ".chapter-body > p",
+    ".chapter-body > ul",
+    ".chapter-body > ol",
+    ".chapter-body > blockquote",
+    ".chapter-body > table",
+    ".chapter-body > figure",
+    ".chapter-body > .editorial-card",
+    ".chapter-body > .process-list",
+    ".chapter-body > .process-flow",
+    ".chapter-body > .process-summary",
+    ".intro > p",
+    ".intro > ul",
+    ".intro > ol",
+    ".intro > blockquote",
+    ".author-page > p",
+    "h2[data-reader-section]",
+    "h3[data-reader-section]",
+    "h4[data-reader-section]",
+  ].join(",");
 
   if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";
@@ -21,6 +41,7 @@
   const sections = Array.from(document.querySelectorAll("[data-reader-section]"));
   const tocLinks = Array.from(document.querySelectorAll(".toc-list a"));
   const reader = document.querySelector(".reader");
+  const readAnchors = Array.from(document.querySelectorAll(READ_ANCHOR_SELECTOR));
   let saveTimer = null;
   let resumeNotice = null;
 
@@ -49,6 +70,43 @@
   };
 
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+  const normalizeAnchorText = (value) => value.replace(/\s+/g, " ").trim().slice(0, 180);
+
+  const hashText = (value) => {
+    let hash = 2166136261;
+    for (let index = 0; index < value.length; index++) {
+      hash ^= value.charCodeAt(index);
+      hash = Math.imul(hash, 16777619);
+    }
+    return (hash >>> 0).toString(36);
+  };
+
+  const assignReadAnchorKeys = () => {
+    const seen = new Map();
+    readAnchors.forEach((anchor) => {
+      const explicitKey = anchor.id ? `id-${anchor.id}` : "";
+      const textKey = hashText(normalizeAnchorText(anchor.textContent || anchor.getAttribute("aria-label") || anchor.tagName));
+      const baseKey = explicitKey || `${anchor.tagName.toLowerCase()}-${textKey}`;
+      const count = seen.get(baseKey) || 0;
+      seen.set(baseKey, count + 1);
+      anchor.dataset.readerAnchor = count ? `${baseKey}-${count + 1}` : baseKey;
+    });
+  };
+
+  const normalizeRenderedEllipses = () => {
+    const walker = document.createTreeWalker(reader, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue.includes("…")) return NodeFilter.FILTER_REJECT;
+        if (node.parentElement?.closest("script, style, code, pre")) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      },
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((node) => {
+      node.nodeValue = node.nodeValue.replaceAll("…", "...");
+    });
+  };
 
   const getDocumentProgress = () => {
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -56,6 +114,8 @@
   };
 
   const getElementTop = (element) => element.getBoundingClientRect().top + window.scrollY;
+  const getRestoreMargin = () => (coarsePointer.matches ? 18 : 76);
+  const getReadViewportTop = () => window.scrollY + getRestoreMargin();
 
   const getSectionRange = (section) => {
     const index = sections.indexOf(section);
@@ -71,8 +131,8 @@
     const chapterCover = section.matches(".chapter") ? section.querySelector(".chapter-cover") : null;
     if (!chapterCover) return false;
     const rect = chapterCover.getBoundingClientRect();
-    const centerY = window.innerHeight / 2;
-    return rect.top <= centerY && rect.bottom >= centerY;
+    const readY = getRestoreMargin();
+    return rect.top <= readY && rect.bottom >= readY;
   };
 
   const getClosestReaderSection = () => {
@@ -86,6 +146,24 @@
       }
       return closest;
     }, null)?.section || null;
+  };
+
+  const getSectionAtViewportTop = () => {
+    const viewportTop = getReadViewportTop();
+    let active = sections[0];
+    for (const section of sections) {
+      if (getElementTop(section) <= viewportTop) active = section;
+    }
+    return active;
+  };
+
+  const getActiveReadAnchor = () => {
+    const viewportTop = getReadViewportTop();
+    let active = null;
+    for (const anchor of readAnchors) {
+      if (getElementTop(anchor) <= viewportTop) active = anchor;
+    }
+    return active;
   };
 
   const getChapterId = (section) => {
@@ -104,7 +182,7 @@
         storage.remove();
         return null;
       }
-      if (!parsed.sectionId && typeof parsed.documentProgress !== "number") return null;
+      if (!parsed.anchorKey && !parsed.sectionId && typeof parsed.documentProgress !== "number") return null;
       return parsed;
     } catch {
       storage.remove();
@@ -120,24 +198,30 @@
   const saveReadingPosition = () => {
     const documentProgress = getDocumentProgress();
     const progressPercent = documentProgress * 100;
-    if (progressPercent >= 98 || getClosestReaderSection()?.matches(".back-cover")) {
+    const section = getSectionAtViewportTop();
+    if (progressPercent >= 98 || section?.matches(".back-cover")) {
       storage.remove();
       clearResumeNotice();
       return;
     }
     if (progressPercent < 2) return;
 
-    const section = getClosestReaderSection();
     if (!section || isCoverPosition(section)) return;
 
     const { start, end } = getSectionRange(section);
-    const centerPosition = window.scrollY + window.innerHeight / 2;
-    const sectionProgress = clamp((centerPosition - start) / (end - start), 0, 1);
+    const viewportTop = getReadViewportTop();
+    const sectionProgress = clamp((viewportTop - start) / (end - start), 0, 1);
+    const anchor = getActiveReadAnchor();
+    const anchorTop = anchor ? getElementTop(anchor) : null;
+    const anchorOffset = anchor ? clamp(viewportTop - anchorTop, 0, Math.max(1, anchor.offsetHeight)) : 0;
 
     storage.set(JSON.stringify({
       chapterId: getChapterId(section),
       sectionId: section.id || "",
       sectionProgress,
+      sectionOffset: clamp(viewportTop - start, 0, end - start),
+      anchorKey: anchor?.dataset.readerAnchor || "",
+      anchorOffset,
       documentProgress,
       savedAt: new Date().toISOString(),
       contentVersion,
@@ -161,11 +245,19 @@
   const restoreReadingPosition = (record) => {
     clearResumeNotice();
     let destination = null;
+    const anchor = record.anchorKey
+      ? readAnchors.find((candidate) => candidate.dataset.readerAnchor === record.anchorKey)
+      : null;
     const section = record.sectionId ? document.getElementById(record.sectionId) : null;
 
-    if (section) {
+    if (anchor) {
+      destination = getElementTop(anchor) + clamp(record.anchorOffset || 0, 0, Math.max(1, anchor.offsetHeight)) - getRestoreMargin();
+    } else if (section) {
       const { start, end } = getSectionRange(section);
-      destination = start + clamp(record.sectionProgress || 0, 0, 1) * (end - start) - window.innerHeight / 2;
+      const sectionOffset = typeof record.sectionOffset === "number"
+        ? clamp(record.sectionOffset, 0, end - start)
+        : clamp(record.sectionProgress || 0, 0, 1) * (end - start);
+      destination = start + sectionOffset - getRestoreMargin();
     } else if (typeof record.documentProgress === "number") {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       destination = clamp(record.documentProgress, 0, 1) * Math.max(0, maxScroll);
@@ -178,9 +270,11 @@
 
   const showResumeNotice = (record) => {
     if (!record) return;
-    if (window.location.hash) return;
+    const anchor = record.anchorKey
+      ? readAnchors.find((candidate) => candidate.dataset.readerAnchor === record.anchorKey)
+      : null;
     const section = record.sectionId ? document.getElementById(record.sectionId) : null;
-    if (!section && record.contentVersion !== contentVersion && typeof record.documentProgress !== "number") return;
+    if (!anchor && !section && record.contentVersion !== contentVersion && typeof record.documentProgress !== "number") return;
 
     resumeNotice = document.createElement("section");
     resumeNotice.className = "resume-reading";
@@ -325,6 +419,8 @@
     toggleReaderUi();
   });
 
+  normalizeRenderedEllipses();
+  assignReadAnchorKeys();
   updateReaderState();
   setReaderUi(false);
   window.requestAnimationFrame(() => showResumeNotice(parseStoredPosition()));
@@ -339,6 +435,7 @@
     updateReaderState();
     scheduleSaveReadingPosition();
   });
+  window.addEventListener("beforeunload", saveReadingPosition);
   window.addEventListener("pagehide", saveReadingPosition);
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "hidden") saveReadingPosition();

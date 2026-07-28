@@ -1030,8 +1030,9 @@ figcaption {
   right: 22px;
   bottom: 22px;
   z-index: 45;
-  width: min(360px, calc(100vw - 44px));
-  padding: 16px;
+  width: max-content;
+  max-width: calc(100vw - 44px);
+  padding: 14px 16px;
   border: 1px solid color-mix(in srgb, var(--resume-accent) 22%, var(--line));
   border-radius: 8px;
   background: rgba(255, 253, 250, .96);
@@ -1039,15 +1040,18 @@ figcaption {
 }
 
 .resume-reading p {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   color: #262626;
   font-size: 15px;
   line-height: 1.55;
   font-weight: 760;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .resume-reading__actions {
   display: flex;
+  justify-content: center;
   gap: 8px;
 }
 
@@ -1211,14 +1215,14 @@ figcaption {
   .resume-reading {
     right: max(12px, env(safe-area-inset-right));
     bottom: max(12px, env(safe-area-inset-bottom));
-    left: max(12px, env(safe-area-inset-left));
-    width: auto;
+    left: auto;
+    width: max-content;
     max-width: calc(100vw - 24px);
-    padding: 14px;
+    padding: 12px 14px;
   }
 
-  .resume-reading__actions {
-    justify-content: flex-end;
+  .resume-reading p {
+    white-space: normal;
   }
 
   .chapter-cover {

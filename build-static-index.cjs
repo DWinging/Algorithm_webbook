@@ -49,7 +49,9 @@ const bookTocItems = [
   { id: "epilogue", number: "04", title: "에필로그", subtitle: "공부 방식과 기록에 대한 마지막 이야기" },
 ];
 
-const escapeHtml = (value) => String(value)
+const normalizeTypography = (value) => String(value).replaceAll("…", "...");
+
+const escapeHtml = (value) => normalizeTypography(value)
   .replaceAll("&", "&amp;")
   .replaceAll("<", "&lt;")
   .replaceAll(">", "&gt;");
