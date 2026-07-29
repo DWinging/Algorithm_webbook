@@ -508,12 +508,13 @@ strong {
 }
 
 code {
-  padding: .02em .16em;
-  border-radius: 2px;
-  background: rgba(124, 58, 237, .045);
-  color: var(--chapter-accent);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: .92em;
+  padding: 0;
+  background: transparent;
+  color: #b4534b;
+  font-family: inherit;
+  font-size: 0.85em;
+  font-style: normal;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -643,10 +644,10 @@ blockquote {
   margin: -.16em 0 0;
 }
 
-.question-list {
+/* .question-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px 34px;
+  grid-template-columns: 1fr;
+  gap: 18px;
   margin: 40px 0;
   padding: 0;
   list-style: none;
@@ -667,6 +668,33 @@ blockquote {
   height: 5px;
   border-radius: 50%;
   background: var(--chapter-accent);
+} */
+
+.question-card {
+  margin: 32px 0;
+  padding: 22px 24px;
+  background: #f5f0ff;
+  border: 1px solid #ddd0ff;
+  border-radius: 10px;
+}
+
+.question-list {
+  margin: 0;
+  padding-left: 0.9rem;
+}
+
+.question-list li {
+  padding-left: 2px;
+  line-height: 1.6;
+}
+
+.question-list li + li {
+  margin-top: 6px;
+}
+
+.question-list li::marker {
+  color: #a78bfa;
+  font-size: 0.72em;
 }
 
 .prompt-card {
