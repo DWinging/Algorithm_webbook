@@ -114,8 +114,14 @@
   };
 
   const getElementTop = (element) => element.getBoundingClientRect().top + window.scrollY;
-  const getRestoreMargin = () => (coarsePointer.matches ? 18 : 76);
-  const getReadViewportTop = () => window.scrollY + getRestoreMargin();
+  const getReadingLineOffset = () => {
+    const headerHeight = header?.getBoundingClientRect().height || 0;
+    const minimumOffset = headerHeight + (coarsePointer.matches ? 18 : 24);
+    const preferredOffset = coarsePointer.matches ? window.innerHeight * 0.28 : window.innerHeight * 0.32;
+    const maximumOffset = Math.max(minimumOffset, window.innerHeight * 0.58);
+    return clamp(Math.max(minimumOffset, preferredOffset), minimumOffset, maximumOffset);
+  };
+  const getReadViewportTop = () => window.scrollY + getReadingLineOffset();
 
   const getSectionRange = (section) => {
     const index = sections.indexOf(section);
@@ -131,7 +137,7 @@
     const chapterCover = section.matches(".chapter") ? section.querySelector(".chapter-cover") : null;
     if (!chapterCover) return false;
     const rect = chapterCover.getBoundingClientRect();
-    const readY = getRestoreMargin();
+    const readY = getReadingLineOffset();
     return rect.top <= readY && rect.bottom >= readY;
   };
 
@@ -251,13 +257,13 @@
     const section = record.sectionId ? document.getElementById(record.sectionId) : null;
 
     if (anchor) {
-      destination = getElementTop(anchor) + clamp(record.anchorOffset || 0, 0, Math.max(1, anchor.offsetHeight)) - getRestoreMargin();
+      destination = getElementTop(anchor) + clamp(record.anchorOffset || 0, 0, Math.max(1, anchor.offsetHeight)) - getReadingLineOffset();
     } else if (section) {
       const { start, end } = getSectionRange(section);
       const sectionOffset = typeof record.sectionOffset === "number"
         ? clamp(record.sectionOffset, 0, end - start)
         : clamp(record.sectionProgress || 0, 0, 1) * (end - start);
-      destination = start + sectionOffset - getRestoreMargin();
+      destination = start + sectionOffset - getReadingLineOffset();
     } else if (typeof record.documentProgress === "number") {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       destination = clamp(record.documentProgress, 0, 1) * Math.max(0, maxScroll);
@@ -395,8 +401,9 @@
     header.classList.toggle("is-cover", window.scrollY < 80);
 
     let active = sections[0];
+    const readingLineOffset = getReadingLineOffset();
     for (const section of sections) {
-      if (section.getBoundingClientRect().top <= 90) active = section;
+      if (section.getBoundingClientRect().top <= readingLineOffset) active = section;
     }
 
     if (active) {
