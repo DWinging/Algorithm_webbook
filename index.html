@@ -244,7 +244,7 @@
 <p>그리고 AI의 답변을 들었다면, 그 내용을 나만의 방식으로 다시 정리해야 합니다.</p>
 <p>단순히 답만 보고 넘어가면 다음번에 비슷한 문제를 만났을 때 또 막힐 수 있습니다. 문제의 어떤 조건에서 해당 접근을 떠올릴 수 있었는지, 어떤 값을 관리해야 했는지, 내가 처음 생각한 흐름과 무엇이 달랐는지를 문서로 남겨야 합니다.</p>
 <p>그래야 해당 접근이 나온 이유를 오래 기억할 수 있고, 조건이 조금 달라진 문제를 만났을 때도 다시 활용할 수 있습니다.</p>
-<aside class="editorial-card editorial-card--key"><span class="editorial-card__label">KEY POINT</span><p>시뮬레이션은 전체 흐름을 따라가는 과정입니다.</p><p>종이에 값과 상태가 변하는 과정을 직접 정리하는 습관을 들이고, 너무 안 풀릴 경우에는 AI를 적극적으로 활용하는 것을 추천드립니다.</p></aside>
+<aside class="editorial-card editorial-card--key"><span class="editorial-card__label">KEY POINT</span><p>시뮬레이션은 전체 흐름을 따라가는 과정입니다.</p><p>종이에 값과 상태가 변하는 과정을 직접 정리하는 습관을 들이고, 너무 안 풀릴 경우에는 AI를 적극적으로 활용하는 것을 추천합니다.</p></aside>
 <aside class="editorial-card editorial-card--check"><span class="editorial-card__label">CHECK</span><p>AI가 항상 정답을 이야기하는 것은 아닙니다.</p><p>실제로 저는 AI가 절대로 성립하지 않는다고 주장한 풀이를 가지고 정답을 받았고, 결국 AI의 항복 선언까지 받아낸 경험이 있습니다.</p><p>해당 풀이는 Chapter 3에서 다룰 예정입니다.</p></aside>
 <hr>
 <h3 id="chapter-1-section-3" data-reader-section data-reader-title="흐름을 구현할 수 있는 재료를 수집한다">3. 흐름을 구현할 수 있는 재료를 수집한다</h3>
@@ -366,7 +366,7 @@
 
 <aside class="problem-notice">
   <p>저작권상 프로그래머스 문제의 전체 내용을 그대로 보여드릴 수는 없습니다.</p>
-  <p>문제의 자세한 내용은 아래 버튼을 통해 확인해주시기 바랍니다.</p>
+  <p>문제의 자세한 내용은 아래 버튼을 통해 확인해주시면 감사하겠습니다.</p>
   <p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/67260/">프로그래머스 - 동굴 탐험</a></p>
 </aside>
 <p>첫 번째로 살펴볼 문제는 프로그래머스의 2020 카카오 인턴십 문제인 <strong>「동굴 탐험」</strong>입니다.</p>
@@ -471,8 +471,13 @@
   </li>
 </ul>
 <aside class="editorial-card editorial-card--note">
-  <span class="editorial-card__label">NOTE</span>
-  <p>아래 사진은 제가 실제로 문제를 풀면서 작성한 노트입니다.</p>
+  <span class="editorial-card__label">NOTE</span><figure class="figure">
+    <button class="figure__button" type="button" data-image-src="./assets/images/chapter3-outline.png" aria-label="이미지 확대 보기">
+      <img class="figure__image" src="./assets/images/chapter3-outline.png" alt="정리 노트 내용" loading="lazy" />
+    </button>
+    <figcaption>실제로 정리한 노트 내용 </figcaption>
+  </figure>
+  <p>위 사진은 제가 실제로 문제를 풀면서 작성한 노트입니다.</p>
   <p>앞에서 설명한 과정을 처음부터 자세하게 정리한 것은 아닙니다. 제가 알아볼 수 있는 정도로 풀이의 흐름을 적고, 필요한 자료구조를 나열한 뒤 바로 구현을 시작했습니다.</p>
   <p>실제로 저는 생각보다 많은 내용을 적지 않습니다. 중요한 것은 내용을 정형화해서 예쁘게 정리하는 것이 아니라, 코드를 작성하기 전에 풀이의 흐름과 필요한 자료구조를 한 번이라도 정리해보는 것입니다.</p>
 </aside>
@@ -491,7 +496,7 @@
   <div class="chapter-body">
 <div class="problem-notice problem-notice--sky">
   <p>저작권상 프로그래머스 문제의 전체 내용을 그대로 보여드릴 수는 없습니다.</p>
-  <p>문제의 자세한 내용은 아래 버튼을 통해 확인해주시기 바랍니다.</p>
+  <p>문제의 자세한 내용은 아래 버튼을 통해 확인해주시면 감사하겠습니다.</p>
   <a href="https://school.programmers.co.kr/learn/courses/30/lessons/87694/">프로그래머스 - 아이템 줍기</a>
 </div>
 <p>두 번째로 해설할 문제는 제가 2025년 9월에 풀었던 프로그래머스의 <strong>「아이템 줍기」</strong>입니다.</p>
@@ -545,8 +550,8 @@
 <p>예를 들어 오른쪽으로 이동하고 있다면 위쪽, 오른쪽, 아래쪽 순서로 확인하고, 위쪽으로 이동하고 있다면 왼쪽, 위쪽, 오른쪽 순서로 확인했습니다.</p>
 
 <figure class="figure">
-  <button class="figure__button" type="button" data-image-src="./assets/images/chapter3-grid.webp" aria-label="이미지 확대 보기">
-    <img class="figure__image" src="./assets/images/chapter3-grid.webp" alt="이동 후보 확인 순서" loading="lazy" />
+  <button class="figure__button" type="button" data-image-src="./assets/images/chapter3-grid.png" aria-label="이미지 확대 보기">
+    <img class="figure__image" src="./assets/images/chapter3-grid.png" alt="이동 후보 확인 순서" loading="lazy" />
   </button>
   <figcaption>진행 방향을 기준으로 왼쪽, 전진, 오른쪽 순서로 다음 칸을 확인한다. </figcaption>
 </figure>
@@ -559,11 +564,11 @@
 <p>하지만 그렇게 되면 처음 진행할 방향을 구할 수 없습니다.</p>
 <p>캐릭터나 아이템이 양쪽으로 이어진 변 위에 있을 수도 있고, 오목한 모서리에 있다면 주변이 모두 사각형으로 채워져 있을 수도 있습니다. 따라서 해당 위치에서는 어느 방향으로 출발해야 하는지 판단하는 것이 불가능합니다.</p>
 <p>그래서 저는 배열을 첫 번째 행부터 왼쪽 → 오른쪽 순서로 탐색하고, 가장 먼저 만나는 지점을 출발점으로 선택했습니다.</p>
-<p>이 때 다각형 외부에서 탐색을 진행했기 때문에 해당 지점은 테두리라는 것이 보장되고, 왼쪽 → 오른쪽 순서로 탐색했기 때문에 첫 진행 방향은 반드시 오른쪽이 되기 때문이죠.</p>
+<p>이때 다각형 외부에서 탐색을 진행했기 때문에 해당 지점은 테두리라는 것이 보장되고, 왼쪽 → 오른쪽 순서로 탐색했기 때문에 첫 진행 방향은 반드시 오른쪽이 되기 때문이죠.</p>
 <h4 id="chapter-3-detail-2" data-reader-section data-reader-title="다각형의 안쪽으로 들어가지는 않는가?">다각형의 안쪽으로 들어가지는 않는가?</h4>
 <p>현재 방향을 기준으로 왼쪽, 전진, 오른쪽 순서로 이동하면 오른손으로 벽을 짚은 상태를 유지할 수 있다고 판단했습니다.</p>
 <p>이동 가능한 영역 전체를 따라가는 것이 아니라, 바깥쪽과 맞닿아 있는 칸을 우선해서 선택하기 때문에 이론상 다각형의 내부를 가로질러 이동하지 않습니다.</p>
-<p>경계의 형태가 달라져도 같은 우선순위를 적용하면, 이동 가능한 칸에 따라 다음 방향이 자연스럽게 결정됩니다.</p>
+<p>경계의 형태가 달라져도 같은 우선순위를 적용하면, 이동 가능한 칸에 따라 다음 방향을 결정할 수 있다고 판단했습니다.</p>
 <p>사실 이 부분은 당시 AI가 해결이 절대 불가능하다고 한 포인트였습니다. 하지만 저는 논리적으로 가능하다고 판단했고, 그대로 진행했습니다.</p>
 <h4 id="chapter-3-detail-3" data-reader-section data-reader-title="전체 경계를 모두 돌 수 있는가?">전체 경계를 모두 돌 수 있는가?</h4>
 <p>문제에서 주어지는 사각형들은 서로 겹쳐 하나의 다각형을 만들며, 모서리나 변에서만 만나는 경우는 주어지지 않습니다.</p>
@@ -572,7 +577,12 @@
 <h3 id="chapter-3-section-5" data-reader-section data-reader-title="오류 발견과 개선">5. 오류 발견과 개선</h3>
 <p>그림을 그리고 직접 따라가 봤을 때는 이동 규칙에 문제가 없었습니다. 하지만 좌표를 배열에 저장하고 실제 값을 출력해보니 예상하지 못한 문제가 있었습니다.</p>
 <p>문제의 그림에서는 서로 떨어져 있는 두 경계가 배열에서는 바로 붙어 있었습니다.</p><p>그림으로는 떨어져 있었지만, 배열에서는 연속된 값이었던 것이죠. 그 결과, 원래는 서로 이동할 수 없는 경계가 상하좌우 또는 대각선으로 인접하게 표현되어 있었습니다.</p>
-<aside class="editorial-card editorial-card--key"><span class="editorial-card__label">KEY POINT</span><p class="editorial-card__lead">그림에서는 떨어진 경계였지만, 배열에서는 이어진 값처럼 저장되었다.</p></aside>
+<figure class="figure">
+  <button class="figure__button" type="button" data-image-src="./assets/images/chapter3-outline.png" aria-label="이미지 확대 보기">
+    <img class="figure__image" src="./assets/images/chapter3-outline.png" alt="좌표와 행렬의 차이" loading="lazy" />
+  </button>
+  <figcaption>그림에서는 떨어진 경계였지만, 배열에서는 이어진 값처럼 저장되었다. </figcaption>
+</figure>
 <p>이 상태에서 이동 규칙을 적용하니 테두리를 따라가지 않고, 가까이 붙어 있던 다른 경계로 넘어가는 불상사가 발생했습니다.</p>
 <p>따라서 좌표 사이의 간격을 벌릴 필요가 있었고, 모든 좌표를 2배로 확장하는 방식을 선택했습니다.</p>
 <p>기존 좌표가 <code>(x, y)</code>라면, 배열에는 각 좌표에 2를 곱한 <code>(2x, 2y)</code>로 저장했습니다. 모든 좌표가 2배로 늘어나면서 기존에 1이었던 경계 사이의 거리도 2가 되었고, 서로 다른 경계 사이에 한 칸의 간격이 생겼습니다.</p>
@@ -608,7 +618,7 @@
 <p>그렇게 혼자 공부를 하다가 싸피에 입과한 후에는 알고리즘이 재미있어서, 혹은 취업 준비를 위해서 각자의 이유는 달라도 꾸준히 문제를 푸는 사람들을 많이 만날 수 있었습니다. 그 사람들과 이야기하면서 제가 배운 내용도 많았고, 반대로 도움을 드리기도 했습니다.</p>
 <p>1학기를 마치고 2학기를 다니는 시점에서, 그동안 제가 생각해온 알고리즘 공부 방식과 문제를 바라보는 관점, 사람들과 대화하면서 느낀 것들을 최대한 담아보고 싶었습니다.</p>
 <p>솔직히 더 자세히 담고 싶었지만, 그러다 보니 내용이 너무 길어져서 많이 줄였습니다. 그래서 전달하고 싶었던 내용이 잘 전달되었을지는 잘 모르겠네요.</p>
-<p>그래도 이 책을 읽고 도움이 되었다고 말해주는 사람이 단 한 명이라도 있다면, 저는 이 글을 쓴 목표를 충분히 달성했다고 생각합니다.</p>
+<p>그래도 이 책을 읽고 도움이 되었다고 말해주는 사람이 단 한 명이라도 있다면, 저는 이 책을 쓴 목표를 충분히 달성했다고 생각합니다.</p>
 <p>알고리즘 관련 질문은 언제나 환영입니다. 책 마지막 장에 이메일과 Velog, GitHub를 남겨두었으니 궁금한 점이나 이야기하고 싶은 내용이 있다면 편하게 연락해 주세요.</p>
   </div>
 </section>
