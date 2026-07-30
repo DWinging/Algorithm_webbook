@@ -172,6 +172,16 @@
     return active;
   };
 
+  const getReadAnchorRange = (anchor) => {
+    const start = getElementTop(anchor);
+    const index = readAnchors.indexOf(anchor);
+    const next = readAnchors.slice(index + 1).find((candidate) => getElementTop(candidate) > start + 1);
+    const fallbackSection = anchor.closest("[data-reader-section]");
+    const fallbackEnd = fallbackSection ? getSectionRange(fallbackSection).end : document.documentElement.scrollHeight;
+    const end = next ? getElementTop(next) : fallbackEnd;
+    return { start, end: Math.max(start + 1, end) };
+  };
+
   const getChapterId = (section) => {
     const chapter = section?.closest?.(".chapter");
     return chapter?.id || (section?.matches?.(".chapter") ? section.id : "");
@@ -218,8 +228,8 @@
     const viewportTop = getReadViewportTop();
     const sectionProgress = clamp((viewportTop - start) / (end - start), 0, 1);
     const anchor = getActiveReadAnchor();
-    const anchorTop = anchor ? getElementTop(anchor) : null;
-    const anchorOffset = anchor ? clamp(viewportTop - anchorTop, 0, Math.max(1, anchor.offsetHeight)) : 0;
+    const anchorRange = anchor ? getReadAnchorRange(anchor) : null;
+    const anchorOffset = anchorRange ? clamp(viewportTop - anchorRange.start, 0, anchorRange.end - anchorRange.start) : 0;
 
     storage.set(JSON.stringify({
       chapterId: getChapterId(section),
@@ -257,7 +267,8 @@
     const section = record.sectionId ? document.getElementById(record.sectionId) : null;
 
     if (anchor) {
-      destination = getElementTop(anchor) + clamp(record.anchorOffset || 0, 0, Math.max(1, anchor.offsetHeight)) - getReadingLineOffset();
+      const { start, end } = getReadAnchorRange(anchor);
+      destination = start + clamp(record.anchorOffset || 0, 0, end - start) - getReadingLineOffset();
     } else if (section) {
       const { start, end } = getSectionRange(section);
       const sectionOffset = typeof record.sectionOffset === "number"
