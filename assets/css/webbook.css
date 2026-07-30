@@ -566,6 +566,24 @@ blockquote p {
   color: #813d34;
 }
 
+.problem-notice--sky {
+  background: #f2f8fd;
+  border-color: #cfe3f4;
+  border-left-color: #4f8fcf;
+}
+
+.problem-notice--sky a {
+  border-color: #b8d6ed;
+  color: #4f8fcf;
+}
+
+.problem-notice--sky a:hover,
+.problem-notice--sky a:focus-visible {
+  background: #e3f1fb;
+  border-color: #4f8fcf;
+  color: #2f6fa7;
+}
+
 .reader-question {
   margin: 36px -16px;
   padding: 28px 34px;

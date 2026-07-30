@@ -470,7 +470,12 @@
     GitHub: <a href="https://github.com/DWinging/Algorithm/blob/main/Algorithm/2026/07/19/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4_%EB%8F%99%EA%B5%B4_%ED%83%90%ED%97%98/solve.md">동굴 탐험 정리 파일</a>
   </li>
 </ul>
-<aside class="editorial-card editorial-card--note"><span class="editorial-card__label">NOTE</span><p>아래 사진은 제가 실제로 문제를 풀면서 작성한 노트입니다.</p><p>앞에서 설명한 과정을 처음부터 자세하게 정리한 것은 아닙니다. 제가 알아볼 수 있는 정도로 풀이의 흐름을 적고, 필요한 자료구조를 나열한 뒤 바로 구현을 시작했습니다.</p><p>실제로는 생각보다 많은 내용을 적지 않습니다. 중요한 것은 내용을 정형화해서 예쁘게 정리하는 것이 아니라, 코드를 작성하기 전에 풀이의 흐름과 필요한 자료구조를 한 번이라도 정리해보는 것입니다.</p></aside>
+<aside class="editorial-card editorial-card--note">
+  <span class="editorial-card__label">NOTE</span>
+  <p>아래 사진은 제가 실제로 문제를 풀면서 작성한 노트입니다.</p>
+  <p>앞에서 설명한 과정을 처음부터 자세하게 정리한 것은 아닙니다. 제가 알아볼 수 있는 정도로 풀이의 흐름을 적고, 필요한 자료구조를 나열한 뒤 바로 구현을 시작했습니다.</p>
+  <p>실제로 저는 생각보다 많은 내용을 적지 않습니다. 중요한 것은 내용을 정형화해서 예쁘게 정리하는 것이 아니라, 코드를 작성하기 전에 풀이의 흐름과 필요한 자료구조를 한 번이라도 정리해보는 것입니다.</p>
+</aside>
 <hr>
   </div>
 </section>
@@ -484,10 +489,15 @@
     <p class="chapter-cover__cue">계속 스크롤해서 읽기</p>
   </div>
   <div class="chapter-body">
-<p>두 번째로 해설할 문제는 제가 2025년 9월에 풀었던 프로그래머스의 <strong>아이템 줍기</strong>입니다.</p>
-<aside class="editorial-card editorial-card--copyright"><span class="editorial-card__label">COPYRIGHT</span><p class="disabled-link">공식 문제 링크는 준비 중입니다.</p></aside>
+<div class="problem-notice problem-notice--sky">
+  <p>저작권상 프로그래머스 문제의 전체 내용을 그대로 보여드릴 수는 없습니다.</p>
+  <p>문제의 자세한 내용은 아래 버튼을 통해 확인해주시기 바랍니다.</p>
+  <a href="https://school.programmers.co.kr/learn/courses/30/lessons/87694/">프로그래머스 - 아이템 줍기</a>
+</div>
+<p>두 번째로 해설할 문제는 제가 2025년 9월에 풀었던 프로그래머스의 <strong>「아이템 줍기」</strong>입니다.</p>
 <p>이 문제는 깊이·너비 우선 탐색(DFS/BFS)으로 분류되며, 대부분 그래프 탐색을 활용해 해결합니다. 하지만 저는 일반적인 풀이와 달리 문제를 저만의 방식으로 해석하고, 직접 시뮬레이션하며 발견한 이동 규칙을 하나의 풀이로 구현했습니다.</p>
-<p>이번 문제를 선택한 이유는 그 과정에서 문제를 해석하고, 시뮬레이션을 통해 풀이를 설계한 뒤, 적절한 자료구조를 선택하고 반례를 검증하는 전체 흐름을 보여드릴 수 있기 때문입니다. 또한 같은 문제라도 어떻게 해석하는지에 따라 전혀 다른 풀이가 나올 수 있다는 점을 보여드리고 싶었습니다.</p>
+<p>이 문제를 선택한 이유는 문제를 해석하고, 시뮬레이션을 통해 풀이를 설계한 뒤, 적절한 자료구조를 선택하고 반례를 검증하는 전체 흐름을 보여드리기 위해서입니다.</p>
+<p>또한 같은 문제라도 어떻게 해석하고 접근하는지에 따라 전혀 다른 풀이가 나올 수 있다는 점도 함께 보여드리고 싶었습니다.</p>
 <p>이번 문제의 풀이는 다음과 같은 흐름으로 정리했습니다.</p>
 <div class="process-summary" aria-label="풀이 흐름"><span>1. 문제 해석</span><span>2. 풀이 아이디어</span><span>3. 이동 규칙 설계</span><span>4. 풀이 검증</span><span>5. 오류 개선</span></div>
 <h3 id="chapter-3-section-1" data-reader-section data-reader-title="문제 해석">1. 문제 해석</h3>
