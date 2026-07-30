@@ -204,7 +204,16 @@
 <p>처음부터 긴 지문을 하나하나 이해하려고 하다 보면 핵심을 파악하기도 전에 지쳐버리거나, 여러 설명에 묻혀 중요한 조건을 놓칠 수 있습니다. 그러다 보면 결국 “그래서 뭘 구해야 하는 거지?”라는 의문만 남은 채 시간만 흘러가게 됩니다.</p>
 <p>이런 문제를 만나면 처음부터 모든 내용을 완벽하게 이해하려고 하기보다, 먼저 전체 내용을 빠르게 훑어보면서 풀이에 필요한 정보를 찾아보는 것을 추천합니다. 문제의 핵심 구조를 먼저 파악해두면 각 설명이 무엇을 의미하는지 이해하는 데 도움이 되고, 중요한 조건도 조금 더 눈에 들어올 수 있기 때문입니다.</p>
 <p>문제를 훑어볼 때는 문제를 구성하는 데이터와 조건을 중심으로 다음 내용을 확인하는 것이 좋습니다.</p>
-<ul><li>어떤 데이터가 주어지는가?</li><li>각 데이터는 무엇을 의미하는가?</li><li>값 사이에는 어떤 관계가 있는가?</li><li>어떤 조건에서 상태가 변하는가?</li><li>어떤 연산이 반복되는가?</li><li>최종적으로 구해야 하는 결과값은 무엇인가?</li></ul>
+<div class="question-card">
+  <ul class="question-list">
+    <li>어떤 데이터가 주어지는가?</li>
+    <li>각 데이터는 무엇을 의미하는가?</li>
+    <li>값 사이에는 어떤 관계가 있는가?</li>
+    <li>어떤 조건에서 상태가 변하는가?</li>
+    <li>어떤 연산이 반복되는가?</li>
+    <li>최종적으로 구해야 하는 결과값은 무엇인가?</li>
+  </ul>
+</div>
 <p>이 정보들을 찾았다면, 이를 중심으로 문제의 구조를 다시 정의합니다.</p>
 <p>예를 들어 문제에서는 여러 장소를 이동하고 특정 순서에 따라 행동하는 이야기로 설명하더라도, 핵심만 남기면 여러 정점이 연결된 그래프에서 선행 조건을 만족하며 모든 정점을 방문할 수 있는지 확인하는 문제로 정리할 수 있습니다.</p>
 <p>그래프가 아닌 문제도 마찬가지입니다. 물건을 순서대로 배치하거나 선택하는 이야기로 설명되어 있더라도, 실제로는 배열에서 주어진 조건을 만족하는 구간 중 최댓값을 구하는 문제일 수 있습니다.</p>
@@ -234,7 +243,7 @@
 <p>직접 굴려봤는데도 “값이 왜 이게 나오는 거지?”, “그래서 다음은 어떻게 된다고??” 하는 상황은 당연히 마주칠 수 있습니다.</p>
 <p>하지만 괜찮습니다. 여기까지 왔다면 적어도 내가 어디까지 이해했고, 어느 지점부터 흐름이 끊기는지는 확인한 상태이기 때문이죠. 이제는 막힌 지점을 하나씩 풀어나가면 되는 일입니다.</p>
 <p>이때 시간이 충분하다면 조금 더 고민하거나 잠시 문제를 덮어두는 것도 하나의 방법이지만, 단기간에 실력을 향상시켜야 하는 상황이라면 계속 같은 자리에서 머무를 수는 없습니다.</p>
-<p>풀이가 정말 보이지 않는다면 그냥 <strong>“나는 지금 모른다”</strong>는 사실을 인정하고, AI에게 도움을 요청하는 것을 권장합니다.</p>
+<p>그래서 풀이가 정말 보이지 않는다면 그냥 <strong>“나는 지금 모른다”</strong>는 사실을 인정하고, AI에게 도움을 요청하는 것을 권장합니다.</p>
 <p>다만 AI에게 곧바로 정답 코드를 요청하기보다, 앞에서 직접 정리한 내용을 바탕으로 현재 막힌 지점을 설명하는 편이 좋습니다.</p>
 <p>AI에게는 다음과 같이 질문할 수 있습니다.</p>
 <aside class="prompt-card"><span class="prompt-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="prompt-label">PROMPT EXAMPLE</span><p>이거 처음에는 그리디인가 싶었는데, 예제를 굴려보니까 DP 같아. 이전 값을 재사용해야 하는 건 알겠는데…… 그래서 뭘 저장해야 하지? 어떤 값을 관리해야 할지 잘 모르겠다. 힌트 조금만 줘봐.</p></aside>
@@ -299,7 +308,7 @@
 <p>따라서 문제에서 주어진 범위와 시간, 메모리 제한 등을 바탕으로 시간복잡도와 공간복잡도를 계산해야 합니다. 입력이 최댓값까지 들어왔을 때 연산량은 어떻게 되는지, 현재 저장하려는 값이 메모리 공간을 어느 정도 차지하는지 체크하는 과정이죠.</p>
 <p>만약 시간복잡도와 공간복잡도를 계산했을 때 현재 풀이로는 제한 조건을 통과하기 어렵다면, 연산 횟수를 줄이거나 저장하는 상태를 조정하면서 설계를 수정해야 합니다.</p>
 <p>같은 값을 여러 번 계산하고 있다면 결과를 저장해 재사용할 수 있고, 매번 전체 범위를 탐색하고 있다면 필요한 구간만 확인하도록 바꿀 수도 있습니다. 반대로 저장하는 값이 지나치게 많다면 꼭 필요한 상태만 남기거나, 필요할 때 다시 계산할 수 있는 값은 별도로 저장하지 않는 방법도 생각해볼 수 있습니다.</p>
-<p>이렇게 설계를 수정하다 보면 무조건 가장 빠르고 메모리를 적게 사용하는 방법을 찾아야 한다고 생각할 수 있습니다. 하지만 현재 풀이가 제한 조건을 충분히 통과할 수 있다면, 최적의 풀이까지 찾아야 할 필요는 없습니다.</p>
+<p>이렇게 설계를 수정하다 보면 무조건 가장 빠르고 메모리를 적게 사용하는 방법을 찾아야 한다고 생각할 수 있습니다. 하지만 현재 풀이가 제한 조건을 충분히 통과할 수 있다면, 최적의 풀이까지 찾을 필요는 없습니다.</p>
 <p>중요한 것은 가독성과 최적화 사이의 균형입니다. 코딩테스트는 세상에서 가장 빠른 코드를 찾는 시험이 아니라, 문제를 어떻게 해석하고 어떤 흐름으로 풀이를 설계했는지 보여주는 시험이라고 생각합니다.</p>
 <p>현재 풀이가 제한 조건을 충분히 통과한다면, 약간의 성능 차이보다는 자신의 사고 과정과 풀이의 흐름이 명확하게 드러나는 코드를 작성하는 편이 좋다고 생각합니다. 성능을 높이기 위해 코드가 지나치게 복잡해지면 디버깅이 어려워지고, 풀이의 흐름을 이해하거나 설명하기도 힘들어지기 때문입니다.</p>
 <p>최근에 코딩테스트와 면접에서는 단순히 정답을 맞혔는지만 확인하는 것이 아니라, 문제를 어떻게 해석했고 왜 해당 풀이를 선택했는지를 설명하도록 했다는 후기도 자주 들었습니다.</p>
@@ -413,14 +422,14 @@
 </div></aside>
 <p>또한 문제에는 다음과 같은 형태의 입력이 주어지지 않는다고 명시되어 있었습니다.</p>
 <ul><li><code>A → B</code>, <code>A → C</code></li><li><code>X → A</code>, <code>Z → A</code></li><li><code>A → B → C</code></li></ul>
-<p>즉, 하나의 방이 여러 방의 <strong>Key</strong>가 되거나 하나의 방을 열기 위해 여러 개의 <strong>Key</strong>가 필요한 경우는 없습니다. 또한 하나의 방이 <strong>Key</strong>와 <strong>Lock</strong>의 역할을 동시에 가지지도 않습니다.</p>
+<p>즉, 하나의 방이 여러 방의 Key가 되거나 하나의 방을 열기 위해 여러 개의 Key가 필요한 경우는 없습니다. 또한 하나의 방이 Key와 Lock의 역할을 동시에 가지지도 않습니다.</p>
 <p>따라서 Key와 Lock은 일대일로 대응한다는 사실을 확인할 수 있었습니다.</p>
 <p>예제까지 확인하고 나니, 이 문제에서 필요한 정보는 다음과 같이 정리할 수 있었습니다.</p>
 <ul><li><code>0</code>부터 <code>n - 1</code>번까지의 방이 있다.</li><li>방과 통로는 하나의 양방향 트리를 이룬다.</li><li>모든 방을 방문해야 한다.</li><li>일부 방에는 먼저 방문해야 하는 방이 존재한다.</li><li>Key와 Lock은 일대일로 대응한다.</li></ul>
 <p>문제는 길었지만, 필요한 내용만 추려보니 다섯 줄로 정리되었습니다.</p>
 <h3 id="chapter-2-section-3" data-reader-section data-reader-title="풀이에 필요한 상태를 구분한다">3. 풀이에 필요한 상태를 구분한다</h3>
 <p>모든 방이 하나의 트리로 연결되어 있고 전체 방을 방문해야 하므로, 기본적으로는 그래프 탐색을 사용할 수 있습니다. 하지만 이 문제에는 일반적인 그래프 탐색과 다른 점이 하나 있습니다.</p>
-<p>바로 연결된 방을 발견했더라도 해당 방이 <strong>Lock</strong>이라면 방문할 수 없다는 사실입니다. 그렇다고 그 방을 그대로 버리면, 나중에 <strong>Key</strong>를 방문했을 때 해당 방의 위치를 다시 찾아야 합니다.</p>
+<p>바로 연결된 방을 발견했더라도 해당 방이 Lock이라면 방문할 수 없다는 사실입니다. 그렇다고 그 방을 그대로 버리면, 나중에 Key를 방문했을 때 해당 방의 위치를 다시 찾아야 합니다.</p>
 <p>따라서 이 문제에서는 방문 여부만 확인하는 것으로는 부족합니다.</p>
 <aside class="editorial-card editorial-card--key">
   <span class="editorial-card__label">KEY POINT</span>
@@ -436,7 +445,7 @@
     <div class="process-flow__item"><span class="process-flow__number">01</span><p>방을 발견한다.</p></div>
     <div class="process-flow__item"><span class="process-flow__number">02</span><p>방문할 수 있다면 바로 탐색한다.</p></div>
     <div class="process-flow__item"><span class="process-flow__number">03</span><p>Lock이라면 잠시 보류한다.</p></div>
-    <div class="process-flow__item"><span class="process-flow__number">04</span><p>이후 보류했던 방을 열 수 있는 <strong>Key</strong>를 방문하면, 해당 방을 다시 탐색한다.</p></div>
+    <div class="process-flow__item"><span class="process-flow__number">04</span><p>이후 보류했던 방을 열 수 있는 Key를 방문하면, 해당 방을 다시 탐색한다.</p></div>
   </div>
 <h3 id="chapter-2-section-4" data-reader-section data-reader-title="상태에 맞는 자료구조를 선택한다">4. 상태에 맞는 자료구조를 선택한다</h3>
 <p>필요한 상태를 정리했다면, 이제 각 상태를 어떤 자료구조로 관리할지 결정할 차례입니다.</p>
@@ -472,8 +481,8 @@
 </ul>
 <aside class="editorial-card editorial-card--note">
   <span class="editorial-card__label">NOTE</span><figure class="figure">
-    <button class="figure__button" type="button" data-image-src="./assets/images/chapter3-outline.png" aria-label="이미지 확대 보기">
-      <img class="figure__image" src="./assets/images/chapter3-outline.png" alt="정리 노트 내용" loading="lazy" />
+    <button class="figure__button" type="button" data-image-src="./assets/images/chapter2-note.jpg" aria-label="이미지 확대 보기">
+      <img class="figure__image" src="./assets/images/chapter2-note.jpg" alt="정리 노트 내용" loading="lazy" />
     </button>
     <figcaption>실제로 정리한 노트 내용 </figcaption>
   </figure>
@@ -532,8 +541,8 @@
 </ul>
 
 <figure class="figure">
-  <button class="figure__button" type="button" data-image-src="./assets/images/chapter3-path.webp" aria-label="이미지 확대 보기">
-    <img class="figure__image" src="./assets/images/chapter3-path.webp" alt="겹친 사각형과 캐릭터 아이템 사이의 두 이동 경로" loading="lazy" />
+  <button class="figure__button" type="button" data-image-src="./assets/images/chapter3-path.png" aria-label="이미지 확대 보기">
+    <img class="figure__image" src="./assets/images/chapter3-path.png" alt="겹친 사각형과 캐릭터 아이템 사이의 두 이동 경로" loading="lazy" />
   </button>
   <figcaption>여러 사각형이 겹쳐 하나의 다각형을 만들고, 캐릭터와 아이템 사이에는 서로 반대 방향으로 이동하는 두 경로가 만들어진다.</figcaption>
 </figure>
@@ -623,11 +632,11 @@
   </div>
 </section>
 <section class="author-page" id="author" data-reader-section data-reader-title="작성자"><h2>작성자</h2>
-<p>이름 | SSAFY 15기</p>
-<p>발행일 :</p>
-<p>email :</p>
-<p>GitHub :</p>
-<p>Velog :</p>
+<p>최동욱 | SSAFY 15기</p>
+<p>발행일 : 2026.07.30</p>
+<p>email : choi.dongwook20@gmail.com </p>
+<p>GitHub : <a href="https://github.com/DWinging">github.com/dwinging</a></p>
+<p>Velog : <a href="https://velog.io/@dong20/series">velog.io/@dong20</a></p>
 </section>
 
 <section class="back-cover" id="back-cover" data-reader-section data-reader-title="끝 표지">
