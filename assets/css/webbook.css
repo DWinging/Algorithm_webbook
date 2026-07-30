@@ -531,6 +531,41 @@ blockquote p {
   margin: 0;
 }
 
+.problem-notice {
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  background: #fff5f3;
+  border: 1px solid #f0d2cc;
+  border-left: 4px solid #c96f61;
+  border-radius: 10px;
+}
+
+.problem-notice p {
+  margin: 0;
+}
+
+.problem-notice p + p {
+  margin-top: 0.5rem;
+}
+
+.problem-notice a {
+  display: inline-block;
+  padding: 0.08rem 0.42rem 0.12rem;
+  border: 1px solid #e6bdb5;
+  border-radius: 6px;
+  background: #fffdfa;
+  color: #9f4f43;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.problem-notice a:hover,
+.problem-notice a:focus-visible {
+  background: #ffe9e5;
+  border-color: #c96f61;
+  color: #813d34;
+}
+
 .reader-question {
   margin: 36px -16px;
   padding: 28px 34px;
@@ -599,6 +634,11 @@ blockquote p {
 .editorial-card--note {
   --chapter-accent: #64748b;
   --card-bg: #f8fafc;
+}
+
+.editorial-card--key {
+  --chapter-accent: #b45309;
+  --card-bg: #fff8e7;
 }
 
 .editorial-card--copyright {

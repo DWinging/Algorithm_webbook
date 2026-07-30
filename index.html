@@ -41,7 +41,7 @@
 <a class="toc-list__section" href="#chapter-2-section-2">예제를 사용해 조건을 이해한다</a>
 <a class="toc-list__section" href="#chapter-2-section-3">풀이에 필요한 상태를 구분한다</a>
 <a class="toc-list__section" href="#chapter-2-section-4">상태에 맞는 자료구조를 선택한다</a>
-<a class="toc-list__section" href="#chapter-2-section-5">정리한 흐름을 구현한다</a>
+<a class="toc-list__section" href="#chapter-2-section-5">설계한 내용을 코드로 옮긴다</a>
 <a class="toc-list__chapter" href="#chapter-3">CHAPTER 3 아이템 줍기</a>
 <a class="toc-list__section" href="#chapter-3-section-1">문제 해석</a>
 <a class="toc-list__section" href="#chapter-3-section-2">풀이 아이디어</a>
@@ -363,10 +363,15 @@
     <p class="chapter-cover__cue">계속 스크롤해서 읽기</p>
   </div>
   <div class="chapter-body">
+
+<aside class="problem-notice">
+  <p>저작권상 프로그래머스 문제의 전체 내용을 그대로 보여드릴 수는 없습니다.</p>
+  <p>문제의 자세한 내용은 아래 버튼을 통해 확인해주시기 바랍니다.</p>
+  <p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/67260/">프로그래머스 - 동굴 탐험</a></p>
+</aside>
 <p>첫 번째로 살펴볼 문제는 프로그래머스의 2020 카카오 인턴십 문제인 <strong>「동굴 탐험」</strong>입니다.</p>
-<aside class="editorial-card editorial-card--copyright"><span class="editorial-card__label">COPYRIGHT</span><p class="disabled-link">공식 문제 링크는 준비 중입니다.</p></aside>
-<p>이 문제는 시나리오가 포함된 스토리텔링형 문제입니다. 첫 문단부터 오지 탐험가인 프로도의 이야기가 나오는데, 저는 대부분의 문장을 읽지 않았습니다.</p>
-<p>이번 Chapter에서는 제가 실제로 문제를 풀었던 흐름을 바탕으로, Chapter 1에서 다루었던 내용을 어떻게 적용했는지 보여드리겠습니다.</p>
+<p>이 문제는 시나리오가 포함된 스토리텔링형 문제로, 시작부터 오지 탐험가인 프로도의 이야기가 등장합니다.</p>
+<p>그래서 이번 Chapter 2에서는 제가 실제로 문제를 풀었던 흐름을 바탕으로, Chapter 1에서 다루었던 내용을 어떻게 적용했는지 보여드리겠습니다.</p>
 <h3 id="chapter-2-section-1" data-reader-section data-reader-title="키워드로 문제의 구조를 파악한다">1. 키워드로 문제의 구조를 파악한다</h3>
 <p>우선 첫 문단부터 읽기 시작했습니다. 다만 모든 문장을 처음부터 차례대로 읽은 것은 아니고, 숫자와 문제의 구조를 파악할 수 있는 키워드 중심으로 확인했습니다.</p>
 <p><code>0부터 n - 1까지의 번호가 있다.</code></p>
@@ -385,17 +390,22 @@
 <p><code>2. 일부 방은 특정 방을 먼저 방문해야 한다.</code></p>
 <p>첫 번째 조건을 통해 모든 방을 탐색해야 한다는 사실을 알 수 있습니다.</p>
 <p>두 번째 조건에는 선행 조건이 있다고 하는데, 처음 읽었을 때는 정확한 의미가 잘 이해되지 않았습니다. 그래서 일단 <code>A를 먼저 방문한 뒤 B를 방문해야 한다</code> 정도로만 이해하고 넘어갔습니다.</p>
-<p>이후에는 알파벳을 사용해 두 번째 조건을 설명하는 예시가 이어집니다. 하지만 이 부분도 일단 넘겼습니다.</p>
-<p>이해되지 않는 문장을 계속 붙잡고 있는 것보다, 입출력 예제를 직접 확인하고 시뮬레이션하는 편이 더 빠르다고 생각했기 때문입니다.</p>
+<p>이후에는 알파벳을 사용해 두 번째 조건을 설명하는 예시가 이어지지만, 이해되지 않는 문장을 계속 붙잡기보다 입출력 예제를 직접 확인하고 시뮬레이션하는 편이 더 빠르다고 판단해 넘어갔습니다.</p>
 <h3 id="chapter-2-section-2" data-reader-section data-reader-title="예제를 사용해 조건을 이해한다">2. 예제를 사용해 조건을 이해한다</h3>
-<p><code>n</code>이 200,000 이하라는 조건만 확인한 뒤, 저는 바로 예제 2번으로 넘어갔습니다.</p>
+<p>입력 범위에서는 <code>n</code>이 200,000 이하라는 조건만 확인한 뒤, 저는 바로 예제 2번으로 넘어갔습니다.</p>
 <p>예제 1번을 건너뛴 이유는 보통 예제 2번이나 3번에 예외 상황이나 중요한 조건이 포함되는 경우가 많기 때문입니다.</p>
-<aside class="editorial-card editorial-card--note"><span class="editorial-card__label">NOTE</span><p>문제의 기본 구조를 어느 정도 파악했다면, 예제 1번보다 예제 2번이나 3번을 먼저 확인하는 것도 좋은 방법입니다. 예외 상황을 먼저 보면 문제에서 중요한 조건을 더 빠르게 발견할 수 있습니다.</p></aside>
-<p>예제를 확인한 목적은 정답을 직접 계산하는 것이 아니었습니다. 문제에서 주어진 <code>order</code>와 앞에서 건너뛰었던 선행 조건의 의미를 이해하는 것이 목적이었습니다.</p>
+<aside class="editorial-card editorial-card--note">
+  <span class="editorial-card__label">NOTE</span>
+  <p>문제의 기본 구조를 어느 정도 파악했다면, 예제 1번보다 예제 2번이나 3번을 먼저 확인하는 것도 좋은 방법입니다. 뒤쪽 예제에는 예외 상황이나 중요한 조건이 포함되는 경우가 많아, 문제의 핵심을 더 빠르게 발견하는 데 도움이 됩니다.</p>
+</aside>
+<p>예제를 확인한 이유는 정답을 직접 계산하기 위해서가 아니라, 문제에서 주어진 <code>order</code>와 앞에서 건너뛰었던 선행 조건의 의미를 이해하기 위해서였습니다.</p>
 <p>예제 2번의 흐름을 따라가 보니, 선행 조건은 <strong>A라는 방을 방문한 이후에야 B를 방문할 수 있다</strong>는 의미였습니다.</p>
-<p>이어서 예제 3번을 확인해보니, 선행 조건에 해당하는 방을 방문하지 못하면 모든 방을 탐색할 수 없는 경우도 있다는 사실을 확인할 수 있었습니다.</p>
-<p>예제를 확인한 뒤 다시 선행 조건을 읽어보니, 이제 의미가 완전히 이해되었습니다.</p>
-<aside class="editorial-card editorial-card--key"><span class="editorial-card__label">KEY POINT</span><p class="editorial-card__lead">제가 이해한 선행 조건</p><p><code>order</code>에 <code>A → B</code>가 주어졌다면, A는 B를 방문할 수 있게 만드는 <strong>Key</strong>이고 B는 아직 방문할 수 없는 <strong>Lock</strong>이다.</p>
+<p>이어서 예제 3번을 확인해보니, 선행 조건에 해당하는 방을 방문하지 못하면 모든 방을 탐색할 수 없는 경우도 있다는 사실을 알 수 있었습니다.</p>
+<p>예제를 확인한 뒤 다시 올라가 선행 조건을 읽어보니, 이제야 정확한 의미가 이해되었습니다.</p>
+<aside class="editorial-card editorial-card--key">
+  <span class="editorial-card__label">KEY POINT</span>
+  <p class="editorial-card__lead">제가 이해한 선행 조건</p>
+    <p><code>order</code>에 <code>A → B</code>가 주어졌다면, A는 B를 방문할 수 있게 만드는 <strong>Key</strong>이고, B는 A를 방문하기 전까지 열리지 않는 <strong>Lock</strong>이다.</p>
 <div class="relation-diagram">
   <div class="relation-node"><strong>A</strong><span>KEY</span></div>
   <div class="relation-arrow" aria-hidden="true">→</div>
@@ -403,40 +413,63 @@
 </div></aside>
 <p>또한 문제에는 다음과 같은 형태의 입력이 주어지지 않는다고 명시되어 있었습니다.</p>
 <ul><li><code>A → B</code>, <code>A → C</code></li><li><code>X → A</code>, <code>Z → A</code></li><li><code>A → B → C</code></li></ul>
-<p>즉, 하나의 방이 여러 방의 Key가 되거나 여러 Key를 필요로 하는 경우는 없습니다. 하나의 방이 Key와 Lock의 역할을 동시에 가지는 경우도 없습니다.</p>
-<p>따라서 Key와 Lock은 <strong>일대일로 대응한다</strong>는 사실을 확인할 수 있었습니다.</p>
+<p>즉, 하나의 방이 여러 방의 <strong>Key</strong>가 되거나 하나의 방을 열기 위해 여러 개의 <strong>Key</strong>가 필요한 경우는 없습니다. 또한 하나의 방이 <strong>Key</strong>와 <strong>Lock</strong>의 역할을 동시에 가지지도 않습니다.</p>
+<p>따라서 Key와 Lock은 일대일로 대응한다는 사실을 확인할 수 있었습니다.</p>
 <p>예제까지 확인하고 나니, 이 문제에서 필요한 정보는 다음과 같이 정리할 수 있었습니다.</p>
 <ul><li><code>0</code>부터 <code>n - 1</code>번까지의 방이 있다.</li><li>방과 통로는 하나의 양방향 트리를 이룬다.</li><li>모든 방을 방문해야 한다.</li><li>일부 방에는 먼저 방문해야 하는 방이 존재한다.</li><li>Key와 Lock은 일대일로 대응한다.</li></ul>
 <p>문제는 길었지만, 필요한 내용만 추려보니 다섯 줄로 정리되었습니다.</p>
 <h3 id="chapter-2-section-3" data-reader-section data-reader-title="풀이에 필요한 상태를 구분한다">3. 풀이에 필요한 상태를 구분한다</h3>
-<p>모든 방이 하나의 트리로 연결되어 있고 전체 방을 방문해야 하므로, 기본적으로는 그래프 탐색을 사용할 수 있습니다.</p>
-<p>하지만 이 문제에는 일반적인 그래프 탐색과 다른 점이 하나 있습니다.</p>
-<p>연결된 방을 발견했더라도 해당 방이 Lock이라면 바로 방문할 수 없습니다. 그렇다고 해당 방을 그대로 버릴 수도 없습니다. 나중에 Key를 방문하면 다시 탐색해야 하기 때문입니다.</p>
+<p>모든 방이 하나의 트리로 연결되어 있고 전체 방을 방문해야 하므로, 기본적으로는 그래프 탐색을 사용할 수 있습니다. 하지만 이 문제에는 일반적인 그래프 탐색과 다른 점이 하나 있습니다.</p>
+<p>바로 연결된 방을 발견했더라도 해당 방이 <strong>Lock</strong>이라면 방문할 수 없다는 사실입니다. 그렇다고 그 방을 그대로 버리면, 나중에 <strong>Key</strong>를 방문했을 때 해당 방의 위치를 다시 찾아야 합니다.</p>
 <p>따라서 이 문제에서는 방문 여부만 확인하는 것으로는 부족합니다.</p>
-<aside class="editorial-card editorial-card--key"><span class="editorial-card__label">KEY POINT</span><p class="editorial-card__lead">풀이에서 구분해야 하는 상태</p><ul class="state-list"><li>현재 방문할 수 있는 방</li><li>발견했지만 아직 잠겨 있는 방</li><li>Key와 Lock의 연결 관계</li></ul></aside>
+<aside class="editorial-card editorial-card--key">
+  <span class="editorial-card__label">KEY POINT</span>
+  <p class="editorial-card__lead">풀이에서 구분해야 하는 상태</p>
+  <ul class="state-list">
+    <li>현재 방문할 수 있는 방</li>
+    <li>발견했지만 아직 잠겨 있는 방</li>
+    <li>Key와 연결된 Lock</li>
+  </ul>
+</aside>
 <p>이 상태를 기준으로 전체 흐름을 정리하면 다음과 같습니다.</p>
 <div class="process-flow">
     <div class="process-flow__item"><span class="process-flow__number">01</span><p>방을 발견한다.</p></div>
     <div class="process-flow__item"><span class="process-flow__number">02</span><p>방문할 수 있다면 바로 탐색한다.</p></div>
-    <div class="process-flow__item"><span class="process-flow__number">03</span><p>잠겨 있다면 잠시 보류한다.</p></div>
-    <div class="process-flow__item"><span class="process-flow__number">04</span><p>이후 Key를 방문하면 잠금을 해제하고 다시 탐색한다.</p></div>
+    <div class="process-flow__item"><span class="process-flow__number">03</span><p>Lock이라면 잠시 보류한다.</p></div>
+    <div class="process-flow__item"><span class="process-flow__number">04</span><p>이후 보류했던 방을 열 수 있는 <strong>Key</strong>를 방문하면, 해당 방을 다시 탐색한다.</p></div>
   </div>
-<p>처음에는 트리 전체를 탐색하는 문제로 보였지만, 실제 핵심은 <strong>방문할 수 있는 상태와 아직 방문할 수 없는 상태를 구분하는 것</strong>이었습니다.</p>
 <h3 id="chapter-2-section-4" data-reader-section data-reader-title="상태에 맞는 자료구조를 선택한다">4. 상태에 맞는 자료구조를 선택한다</h3>
-<p>필요한 상태를 정리했다면, 이제 각 상태를 어떤 자료구조로 관리할지 결정했습니다.</p>
-<p>전체 트리를 탐색해야 했기 때문에 <code>DFS</code>와 <code>BFS</code>를 모두 생각할 수 있었습니다.</p>
-<p>다만 이 문제에서는 방문할 수 있는 방을 차례대로 처리하고, 잠긴 방은 나중에 다시 탐색해야 합니다. 저는 이러한 흐름이 <code>Queue</code>를 사용하는 <code>BFS</code>와 자연스럽게 연결된다고 판단했습니다.</p>
-<p>잠긴 방은 발견한 뒤 임시로 보관해야 합니다. 또한 Key를 방문했을 때 해당 Lock을 이미 발견했는지 빠르게 확인해야 하므로 <code>Set</code>을 사용했습니다.</p>
-<p>Key와 Lock의 관계는 방 번호가 <code>0</code>부터 <code>n - 1</code>까지 주어진다는 점을 활용해 배열로 표현했습니다.</p>
+<p>필요한 상태를 정리했다면, 이제 각 상태를 어떤 자료구조로 관리할지 결정할 차례입니다.</p>
+<p>이 문제에서 관리해야 할 대상은 크게 세 가지로 전체 방을 탐색하는 방식, 아직 방문할 수 없는 Lock, 그리고 Key와 Lock의 연결 관계입니다.</p>
+<p><strong>먼저</strong> 전체 트리를 탐색해야 하므로 DFS와 BFS 알고리즘을 떠올릴 수 있습니다. 하지만 이 문제는 한 방향으로 계속 나아가는 방식이 아니라, 현재 방문할 수 있는 방들을 기록하면서 탐색을 이어가야 합니다.</p>
+<p>따라서 DFS도 가능하지만, 방문할 수 있는 방을 <code>Queue</code>로 관리하는 BFS 방식이 더 적합하다고 판단했습니다.</p>
+<p><strong>두 번째</strong>는 탐색 과정에서 발견한 Lock입니다.</p>
+<p>이전에 Key를 방문했다면 일반적인 방과 동일하게 탐색할 수 있습니다. 하지만 아직 Key를 방문하지 않았다면, 당장은 들어갈 수 없지만 나중에 방문할 수 있는 후보가 됩니다. 따라서 이런 방들은 별도로 관리할 필요가 있습니다.</p>
+<p>후보 Lock을 관리하는 방법으로는 크게 배열, <code>List</code>, <code>Set</code>을 생각해볼 수 있습니다.</p>
+<p>먼저 배열을 사용하면 방 번호를 인덱스로 활용해 특정 방이 후보인지 바로 확인할 수 있습니다. 방의 개수도 최대 200,000개이므로 메모리에는 큰 문제가 없습니다. 다만 실제로 발견하지 않은 방까지 포함해 전체 범위를 관리해야 합니다.</p>
+<p><code>List</code>를 사용하면 실제로 발견한 Lock만 저장할 수 있습니다. 하지만 특정 방이 후보에 포함되어 있는지 확인할 때마다 처음부터 탐색해야 한다는 단점이 있습니다.</p>
+<p><code>Set</code> 역시 발견한 Lock만 저장하지만, 특정 방이 포함되어 있는지 빠르게 확인할 수 있습니다. 또한 잠긴 방을 별도의 집합으로 관리한다는 의미도 자료구조에 그대로 드러납니다.</p>
+<p>따라서 배열을 사용하는 방법도 충분히 가능하지만, 필요한 방만 저장하면서 포함 여부를 빠르게 확인할 수 있는 <code>Set</code>을 선택했습니다.</p>
+<p><strong>마지막</strong>은 Key와 Lock의 연결 관계입니다.</p>
+<p>Key를 방문했을 때는 연결된 Lock을 찾아야 하고, 새로운 방을 발견했을 때는 해당 방이 Lock인지와 필요한 Key를 확인할 수 있어야 합니다.</p>
+<p>이 관계는 <code>Map</code>이나 배열을 사용해 관리할 수 있습니다. Key와 Lock의 역할만 잘 구분해서 저장할 수 있다면 어떤 방식을 사용해도 크게 상관은 없습니다.</p>
+<p>저는 방 번호를 그대로 인덱스로 사용하기 위해 배열을 선택했습니다.</p>
 <table><thead><tr><th>관리할 대상</th><th>사용한 자료구조</th></tr></thead><tbody><tr><td>현재 방문할 수 있는 방</td><td><code>Queue</code></td></tr><tr><td>발견했지만 아직 잠겨 있는 방</td><td><code>Set</code></td></tr><tr><td>Key와 Lock의 연결 관계</td><td>배열</td></tr><tr><td>전체 방 탐색</td><td><code>BFS</code></td></tr></tbody></table>
 <p>여기서 중요한 것은 처음부터 <code>BFS</code>, <code>Set</code>, 배열을 떠올렸다는 사실이 아닙니다.</p>
 <p>먼저 문제의 흐름을 따라가며 필요한 상태를 구분했고, 그 상태를 관리하기에 적합한 자료구조를 하나씩 연결했습니다.</p>
-<p>이 흐름이 정리되었다면 실제 구현에 필요한 아이디어는 대부분 나온 상태입니다.</p>
-<h3 id="chapter-2-section-5" data-reader-section data-reader-title="정리한 흐름을 구현한다">5. 정리한 흐름을 구현한다</h3>
-<p>이제 설계한 내용을 코드로 옮기면 되었습니다.</p>
+<p>여기까지 정리되었다면 실제 구현에 필요한 아이디어는 대부분 나온 상태입니다.</p>
+<h3 id="chapter-2-section-5" data-reader-section data-reader-title="설계한 내용을 코드로 옮긴다">5. 설계한 내용을 코드로 옮긴다</h3>
+<p>이제 설계한 내용을 바탕으로 코딩을 시작하면 됩니다.</p>
 <p>이 책에서 이야기하고 싶은 핵심은 정답 코드 자체보다, 문제를 분석하고 풀이를 설계하는 과정입니다.</p>
-<p>Key와 Lock의 관계를 배열에 어떻게 저장했는지, 먼저 발견한 대상이 Key인지 Lock인지에 따라 어떻게 처리했는지와 같은 자세한 구현은 아래의 Velog와 GitHub에서 확인할 수 있습니다.</p>
-<ul><li>Velog:</li><li>GitHub:</li></ul>
+<p>Key와 Lock의 관계를 배열에 저장한 방법과 먼저 발견한 대상이 Key인지 Lock인지에 따른 처리 과정 등, 자세한 구현은 아래의 Velog와 GitHub에서 확인해 주시면 감사하겠습니다.</p>
+<ul>
+  <li>
+    Velog: <a href="https://velog.io/@dong20/Java-프로그래머스-동굴-탐험">[Java] 프로그래머스 - 동굴 탐험</a>
+  </li>
+  <li>
+    GitHub: <a href="https://github.com/DWinging/Algorithm/blob/main/Algorithm/2026/07/19/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4_%EB%8F%99%EA%B5%B4_%ED%83%90%ED%97%98/solve.md">동굴 탐험 정리 파일</a>
+  </li>
+</ul>
 <aside class="editorial-card editorial-card--note"><span class="editorial-card__label">NOTE</span><p>아래 사진은 제가 실제로 문제를 풀면서 작성한 노트입니다.</p><p>앞에서 설명한 과정을 처음부터 자세하게 정리한 것은 아닙니다. 제가 알아볼 수 있는 정도로 풀이의 흐름을 적고, 필요한 자료구조를 나열한 뒤 바로 구현을 시작했습니다.</p><p>실제로는 생각보다 많은 내용을 적지 않습니다. 중요한 것은 내용을 정형화해서 예쁘게 정리하는 것이 아니라, 코드를 작성하기 전에 풀이의 흐름과 필요한 자료구조를 한 번이라도 정리해보는 것입니다.</p></aside>
 <hr>
   </div>
