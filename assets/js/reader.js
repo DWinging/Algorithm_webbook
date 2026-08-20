@@ -365,27 +365,31 @@
     link.addEventListener("click", closeDrawer);
   });
 
-  document.querySelectorAll("img").forEach((image) => {
+  document.querySelectorAll("img[src]").forEach((image) => {
+    const figureButton = image.closest(".figure__button");
+
     if (image.complete && image.naturalWidth > 0) {
-      image.closest(".figure__button")?.classList.add("has-image");
+      figureButton?.classList.add("has-image");
     } else if (image.complete) {
       image.classList.add("is-missing");
-      image.closest(".figure__button")?.classList.remove("has-image");
+      figureButton?.classList.add("has-image-error");
     }
     image.addEventListener("load", () => {
       image.classList.remove("is-missing");
-      image.closest(".figure__button")?.classList.add("has-image");
+      figureButton?.classList.remove("has-image-error");
+      figureButton?.classList.add("has-image");
     });
     image.addEventListener("error", () => {
       image.classList.add("is-missing");
-      image.closest(".figure__button")?.classList.remove("has-image");
+      figureButton?.classList.remove("has-image");
+      figureButton?.classList.add("has-image-error");
     });
   });
 
   document.querySelectorAll(".figure__button").forEach((button) => {
     button.addEventListener("click", () => {
       const image = button.querySelector("img");
-      if (!image || image.classList.contains("is-missing")) return;
+      if (!image || !image.complete || image.naturalWidth === 0) return;
       modalImage.src = button.dataset.imageSrc;
       modalImage.alt = image.alt;
       modalCaption.textContent = button.closest("figure")?.querySelector("figcaption")?.textContent || "";

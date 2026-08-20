@@ -985,12 +985,12 @@ tbody tr:last-child td {
   background:
     linear-gradient(135deg, rgba(124, 58, 237, .08), rgba(100, 116, 139, .08)),
     #fff;
-  cursor: zoom-in;
+  cursor: default;
   overflow: hidden;
 }
 
 .figure__button::after {
-  content: "IMAGE PLACEHOLDER\A" attr(data-image-src);
+  content: "이미지를 불러오는 중입니다…";
   position: absolute;
   inset: 0;
   display: grid;
@@ -999,12 +999,45 @@ tbody tr:last-child td {
   color: var(--muted);
   font-size: 14px;
   text-align: center;
-  white-space: pre-line;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255, 255, 255, .72) 50%,
+    transparent 70%
+  );
+  background-size: 220% 100%;
+  animation: image-loading 1.4s ease-in-out infinite;
 }
 
 .figure__button.has-image::after {
-  content: "";
   display: none;
+}
+
+.figure__button.has-image {
+  cursor: zoom-in;
+}
+
+.figure__button.has-image-error::after {
+  content: "이미지를 불러오지 못했습니다.";
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+  background: transparent;
+  animation: none;
+}
+
+@keyframes image-loading {
+  from { background-position: 100% 0; }
+  to { background-position: -100% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .figure__button::after {
+    animation: none;
+  }
 }
 
 .figure__image {
