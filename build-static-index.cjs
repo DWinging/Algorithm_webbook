@@ -69,13 +69,7 @@ function normalizeTitle(raw) {
 function makeBookCover(title, subtitle) {
   return `
 <section class="book-cover" id="cover" data-reader-section data-reader-title="${escapeAttr(title)}">
-  <div class="book-cover__art">
-    <picture>
-      <source media="(max-width: 820px)" srcset="./assets/images/book-cover-mobile.webp" />
-      <source media="(max-width: 1180px)" srcset="./assets/images/book-cover-tablet.webp" />
-      <img src="./assets/images/book-cover.webp" alt="" aria-hidden="true" />
-    </picture>
-  </div>
+  <div class="book-cover__art"></div>
   <div class="book-cover__content">
     <p class="book-cover__eyebrow">ALGORITHM WEB BOOK</p>
     <h1>${escapeHtml(title).replace(" 어떻게", "<br />어떻게")}</h1>
@@ -522,7 +516,7 @@ function parseMarkdown(md) {
       output.push(compareList(items));
       if (pendingChapter3PathFigure) {
         output.push(figure({
-          src: "./assets/images/chapter3-path.webp",
+          src: "./assets/images/chapter3-path.png",
           alt: "겹친 사각형과 캐릭터 아이템 사이의 두 이동 경로",
           caption: "여러 사각형이 겹쳐 하나의 다각형을 만들고, 캐릭터와 아이템 사이에는 서로 반대 방향으로 이동하는 두 경로가 만들어진다.",
         }));
@@ -555,7 +549,7 @@ function parseMarkdown(md) {
 
     if (renderedParagraph.includes("이 과정은 글만으로 이해하기보다 실제 그림을 따라가 보는 편이 훨씬 쉬웠습니다.")) {
       output.push(figure({
-        src: "./assets/images/chapter3-grid.webp",
+        src: "./assets/images/chapter3-grid.png",
         alt: "이동 후보 확인 순서와 좌표 2배 확장 비교",
         caption: "진행 방향을 기준으로 왼쪽, 전진, 오른쪽 순서로 다음 칸을 확인한다. 좌표를 2배로 확장하면 붙어 보이던 경계 사이의 간격도 표현할 수 있다.",
       }));
@@ -568,13 +562,7 @@ function parseMarkdown(md) {
   }
   output.push(`
 <section class="back-cover" id="back-cover" data-reader-section data-reader-title="끝 표지">
-  <div class="back-cover__art">
-    <picture>
-      <source media="(max-width: 820px)" srcset="./assets/images/back-cover-mobile.webp" />
-      <source media="(max-width: 1180px)" srcset="./assets/images/back-cover-tablet.webp" />
-      <img src="./assets/images/back-cover.webp" alt="" aria-hidden="true" />
-    </picture>
-  </div>
+  <div class="back-cover__art"></div>
   <div class="back-cover__content">
     <h2>끝까지 읽어주셔서 감사합니다.</h2>
     <p>알고리즘을 바라보는 자신만의 관점을 만드는 데 도움이 되었으면 좋겠습니다.</p>
@@ -683,7 +671,7 @@ function validateGeneratedHtml(html) {
     "캐릭터와 아이템 사이를 직접 이동한 거리",
     "전체 둘레에서 해당 거리를 뺀 나머지 거리",
     "두 값 중 작은 값 선택",
-    "./assets/images/chapter3-path.webp",
+    "./assets/images/chapter3-path.png",
     "3. 이동 규칙 설계",
   ]);
 
